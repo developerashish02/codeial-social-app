@@ -15,7 +15,8 @@ module.exports.signOut = function (req, res) {
 
 // create user
 module.exports.createUser = function (req, res) {
-	// todo
+	console.log(req.body);
+	return res.redirect("back");
 };
 
 // sign in and   create a session
