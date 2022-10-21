@@ -29,7 +29,6 @@ module.exports.createUser = function (req, res) {
 			console.log("error while finding duplicate email id");
 			return;
 		}
-
 		// created new user
 		if (!user) {
 			User.create(
