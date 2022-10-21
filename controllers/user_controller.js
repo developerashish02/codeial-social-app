@@ -1,3 +1,5 @@
+const User = require("../models/user");
+
 module.exports.profile = function (req, res) {
 	return res.render("user_profile");
 };
@@ -15,8 +17,43 @@ module.exports.signOut = function (req, res) {
 
 // create user
 module.exports.createUser = function (req, res) {
-	console.log(req.body);
-	return res.redirect("back");
+	// checking password and confirm password is same or not
+	if (req.body.user_password !== req.body.confirm_password) {
+		console.log("password and confirm password not matches");
+		return res.redirect("back");
+	}
+
+	// checking email duplications
+	User.findOne({ email: req.body.user_email }, (error, user) => {
+		if (error) {
+			console.log("error while finding duplicate email id");
+			return;
+		}
+
+		// created new user
+		if (!user) {
+			User.create(
+				{
+					name: req.body.user_name,
+					email: req.body.user_email,
+					password: req.body.user_password,
+				},
+				(error, user) => {
+					console.log(user);
+					if (error) {
+						console.log("error while creating new user");
+						return;
+					}
+					return res.redirect("/users/sign-out");
+				}
+			);
+		}
+		// when user email is aredy register
+		else {
+			console.log("email is alredy register");
+			return res.redirect("back");
+		}
+	});
 };
 
 // sign in and   create a session
