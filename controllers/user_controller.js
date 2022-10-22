@@ -6,12 +6,20 @@ module.exports.profile = function (req, res) {
 
 // sign in user
 module.exports.signIn = function (req, res) {
+	// when user is alredy sign in
+	if (req.isAuthenticated()) {
+		return res.redirect("/users/profile");
+	}
 	return res.render("user_sign_in");
 };
 
 //  todo sign up user
 
 module.exports.signOut = function (req, res) {
+	// when user is alredy sign up
+	if (req.isAuthenticated()) {
+		return res.redirect("/users/profile");
+	}
 	return res.render("user_sign_out");
 };
 
@@ -59,5 +67,5 @@ module.exports.createUser = function (req, res) {
 
 module.exports.createSession = function (req, res) {
 	// todo
-	return res.redirect("/profile");
+	return res.redirect("/");
 };

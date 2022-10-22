@@ -38,6 +38,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(passport.setAuthenticated);
+
 // static folders
 app.use(express.static("./assets"));
 
