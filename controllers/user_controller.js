@@ -59,4 +59,5 @@ module.exports.createUser = function (req, res) {
 
 module.exports.createSession = function (req, res) {
 	// todo
+	return res.redirect("/profile");
 };

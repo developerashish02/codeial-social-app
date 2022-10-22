@@ -2,19 +2,41 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
+
+// use for session cookie
+const session = require("express-session");
+const passport = require("passport");
+const passportLocal = require("./config/passport-local-strategy");
 const port = 9001;
-// initialized express app 
+
+// initialized express app
 const app = express();
 
-// layouts 
+// layouts
 app.use(expressLayouts);
-// setup middleware for watch data 
+// setup middleware for watch data
 app.use(express.urlencoded());
 // set up cookie parser
 app.use(cookieParser());
-// set layouts  
+// set layouts
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
+
+app.use(
+	session({
+		name: "codeial",
+		// todo chnage secret before deployment
+		secret: "blahsomething",
+		saveUninitialized: false,
+		resave: false,
+		cookie: {
+			maxAge: 1000 * 60 * 100,
+		},
+	})
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // static folders
 app.use(express.static("./assets"));
