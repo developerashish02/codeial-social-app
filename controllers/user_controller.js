@@ -15,7 +15,6 @@ module.exports.signIn = function (req, res) {
 };
 
 //  todo sign up user
-
 module.exports.signOut = function (req, res) {
 	// when user is alredy sign up
 	if (req.isAuthenticated()) {
@@ -65,7 +64,6 @@ module.exports.createUser = function (req, res) {
 };
 
 // sign in and   create a session
-
 module.exports.createSession = function (req, res) {
 	// todo
 	return res.redirect("/");
