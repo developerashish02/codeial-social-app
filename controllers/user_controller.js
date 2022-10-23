@@ -1,3 +1,4 @@
+const { response } = require("express");
 const User = require("../models/user");
 
 module.exports.profile = function (req, res) {
@@ -67,5 +68,16 @@ module.exports.createUser = function (req, res) {
 
 module.exports.createSession = function (req, res) {
 	// todo
+	return res.redirect("/");
+};
+
+// destroy session
+module.exports.distroySession = function (req, res) {
+	// passport doing this
+	req.logout((err) => {
+		if (err) {
+			return next(err);
+		}
+	});
 	return res.redirect("/");
 };

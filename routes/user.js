@@ -20,4 +20,6 @@ router.post(
 	userController.createSession
 );
 
+router.get("/logged-out", userController.distroySession);
+
 module.exports = router;
