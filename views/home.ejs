@@ -6,4 +6,17 @@
 		<textarea name="content" id="" cols="30" rows="5"> </textarea>
 		<button type="submit"><strong>Post</strong></button>
 	</form>
+
+	<div class="posts">
+		<ul>
+			<% for( let post of locals.posts ) { %>
+
+			<p>
+				<li><%= post.content %></li>
+				<br />
+				<small><%= post.user %> </small>
+			</p>
+			<% } %>
+		</ul>
+	</div>
 </section>
