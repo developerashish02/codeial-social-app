@@ -13,6 +13,7 @@ const commentSchema = new mongoose.Schema(
 			ref: "User",
 		},
 
+		//  comment belongs to post
 		post: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Post",
