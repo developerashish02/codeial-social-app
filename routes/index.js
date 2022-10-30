@@ -6,5 +6,6 @@ const passport = require("passport");
 router.get("/", passport.checkAuthenticated, homeController.home);
 router.use("/users", require("./user"));
 router.use("/posts", require("./posts"));
+router.use("/comments", require("./comment"));
 
 module.exports = router;
