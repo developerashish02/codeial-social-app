@@ -14,6 +14,7 @@
 				<!-- All posts 6360a90baa47f7142954b650 -->
 				<p>
 					<% if (locals.user && locals.user.id === post.user.id) { %>
+					<!-- delete post button  -->
 					<small>
 						<a href="/posts/destroy/<%=post.id%>">delete</a>
 					</small>
@@ -37,6 +38,12 @@
 						<ul class="post--comments-<%= post.id %>">
 							<% for( let comment of post.comments) { %>
 							<li>
+								<!-- delete comment button -->
+								<% if (locals.user && locals.user.id == comment.user.id) { %>
+								<small>
+									<a href="/comments/destroy/<%=comment.id%>">delete</a>
+								</small>
+								<% } %>
 								<p><%=comment.content %></p>
 								<!-- <br /> -->
 								<small><%= comment.user.name %> </small>

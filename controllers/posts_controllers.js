@@ -27,8 +27,8 @@ module.exports.destroy = function (req, res) {
 			return;
 		}
 
-		// authenticate user is this user to created post for delete
-		console.log(post.user, req.user.id, "****");
+		// authenticate user to  delete the post
+		//  .id means to converting object id into string
 		if (post.user == req.user.id) {
 			// console.log("condition ok");
 			post.remove();
