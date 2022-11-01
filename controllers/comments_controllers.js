@@ -2,13 +2,14 @@ const Comment = require("../models/comment");
 const Post = require("../models/post");
 
 module.exports.createComment = function (req, res) {
-	console.log(req.body.post);
-	Post.findOne(req.body.post, (error, post) => {
+	// console.log(req.body.post, "**");
+	Post.findById(req.body.post, (error, post) => {
 		// cheking error
 		if (error) {
 			console.log("error while finding post to create comment");
 			return;
 		}
+		// console.log(post, error);
 
 		// when we got post
 		if (post) {
@@ -26,9 +27,9 @@ module.exports.createComment = function (req, res) {
 					}
 
 					// pushing comment in post comments
-					post.comments.push(comment);
+					post.comments.push(comment._id);
+					console.log(post.comments, "************");
 					post.save();
-
 					// redirect to the home page
 					res.redirect("/");
 				}
