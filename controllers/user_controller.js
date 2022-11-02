@@ -86,3 +86,19 @@ module.exports.distroySession = function (req, res) {
 	});
 	return res.redirect("/");
 };
+
+// update user profile
+module.exports.updateProfile = function (req, res) {
+	if (req.user.id == req.params.id) {
+		User.findByIdAndUpdate(req.params.id, req.body, (err, updatedUser) => {
+			if (err) {
+				console.log("err while updating user");
+				return;
+			}
+
+			return res.redirect("back");
+		});
+	} else {
+		res.status(401).send("unotherized");
+	}
+};

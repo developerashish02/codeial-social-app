@@ -2,30 +2,24 @@ const Post = require("../models/post");
 const Comment = require("../models/comment");
 
 // create post
-module.exports.createPost = function (req, res) {
-	Post.create(
-		{
+module.exports.createPost = async function (req, res) {
+	try {
+		await Post.create({
 			content: req.body.content,
 			user: req.user._id,
-		},
-		(error, post) => {
-			if (error) {
-				console.log("error while creating post");
-				return;
-			}
-			return res.redirect("back");
-		}
-	);
+		});
+
+		return res.redirect("back");
+	} catch (error) {
+		console.log("error while creating post");
+		return;
+	}
 };
 
 // delete post using authenticated
-module.exports.destroy = function (req, res) {
-	Post.findById(req.params.id, (error, post) => {
-		// catching error
-		if (error) {
-			console.log("error while finding post when we distroy post");
-			return;
-		}
+module.exports.destroy = async function (req, res) {
+	try {
+		let post = await Post.findById(req.params.id);
 
 		// authenticate user to  delete the post
 		//  .id means to converting object id into string
@@ -34,17 +28,14 @@ module.exports.destroy = function (req, res) {
 			post.remove();
 
 			// delete all comments on post
-			Comment.deleteMany({ post: req.params.id }, (err) => {
-				if (err) {
-					console.log("error while deleting comments");
-					return;
-				}
-				return res.redirect("back");
-			});
+			await Comment.deleteMany({ post: req.params.id });
+			return res.redirect("back");
 		}
 		// post not match
 		else {
 			res.redirect("back");
 		}
-	});
+	} catch (error) {
+		console.log("error while posts asnys ");
+	}
 };

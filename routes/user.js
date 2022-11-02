@@ -4,6 +4,11 @@ const router = express.Router();
 const passport = require("passport");
 
 router.get("/profile/:id", passport.checkAuthenticated, userController.profile);
+router.post(
+	"/update/:id",
+	passport.checkAuthenticated,
+	userController.updateProfile
+);
 
 router.get("/sign-in", userController.signIn);
 router.get("/sign-out", userController.signOut);
