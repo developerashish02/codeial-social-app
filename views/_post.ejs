@@ -1,0 +1,28 @@
+<li>
+	<!-- All posts 6360a90baa47f7142954b650 -->
+	<p>
+		<% if (locals.user && locals.user.id === post.user.id) { %>
+		<!-- delete post button  -->
+		<small>
+			<a href="/posts/destroy/<%=post.id%>">delete</a>
+		</small>
+		<% } %> <%= post.content %>
+		<br />
+		<small><%= post.user.name %> </small>
+	</p>
+	<!-- commets  -->
+	<div class="post-comment">
+		<form action="/comments/create" method="post">
+			<input type="text" name="content" placeholder="Add Comment" required />
+			<input type="hidden" name="post" value="<%=post.id  %>" />
+			<button type="submit"><Strong>Add Comment</Strong></button>
+		</form>
+		<div class="post-comments-list">
+			<ul class="post--comments-<%= post.id %>">
+				<% for( let comment of post.comments) { %>
+				<!-- include  -->
+				<%- include('_comment.ejs') %> <% } %>
+			</ul>
+		</div>
+	</div>
+</li>
