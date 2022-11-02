@@ -1,4 +1,5 @@
 const Posts = require("../models/post");
+const User = require("../models/user");
 
 module.exports.home = function (req, res) {
 	Posts.find({})
@@ -15,10 +16,19 @@ module.exports.home = function (req, res) {
 				console.log("error while feching posts");
 				return;
 			}
-			// render home page and sending all user posts
-			return res.render("home", {
-				title: "Home Page",
-				posts,
+
+			User.find({}, (err, users) => {
+				if (err) {
+					console.log("err while finding all users");
+					return;
+				}
+
+				// render home page and sending all user posts
+				return res.render("home", {
+					title: "Home Page",
+					posts,
+					all_users: users,
+				});
 			});
 		});
 };

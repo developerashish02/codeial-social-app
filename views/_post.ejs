@@ -20,7 +20,7 @@
 		<div class="post-comments-list">
 			<ul class="post--comments-<%= post.id %>">
 				<% for( let comment of post.comments) { %>
-				<!-- include  -->
+				<!-- include  comment partial  -->
 				<%- include('_comment.ejs') %> <% } %>
 			</ul>
 		</div>

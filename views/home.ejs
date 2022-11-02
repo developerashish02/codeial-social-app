@@ -57,3 +57,13 @@
 		</ul>
 	</div>
 </section>
+
+<section id="user-friends">
+	<h4>Friends</h4>
+
+	<% for( let users of all_users ) { %>
+	<p>
+		<a href="/users/profile/<%= users.id %>"><%= users.name %> </a>
+	</p>
+	<% } %>
+</section>
