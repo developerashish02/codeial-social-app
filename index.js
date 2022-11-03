@@ -10,6 +10,7 @@ const passportLocal = require("./config/passport-local-strategy");
 const port = 9001;
 const MongoStore = require("connect-mongo");
 const sassMiddleware = require("node-sass-middleware");
+const flash = require("connect-flash");
 // initialized express app
 const app = express();
 
@@ -56,6 +57,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticated);
+
+app.use(flash());
 
 // static folders
 app.use(express.static("./assets"));
