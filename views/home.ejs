@@ -1,5 +1,4 @@
 <h1>Home</h1>
-
 <section id="feed-posts">
 	<h3>Posts</h3>
 	<form action="/posts/create-post" method="post" id="new-post-form">
@@ -9,6 +8,7 @@
 
 	<div class="posts">
 		<ul>
+			<!-- include partials to redable home.ejs  -->
 			<%- include('_post.ejs') %>
 		</ul>
 	</div>
