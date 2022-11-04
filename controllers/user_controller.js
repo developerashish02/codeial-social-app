@@ -73,6 +73,7 @@ module.exports.createUser = function (req, res) {
 // sign in and   create a session
 module.exports.createSession = function (req, res) {
 	// todo
+	req.flash("success", "Logged in successfully!");
 	return res.redirect("/");
 };
 
@@ -84,6 +85,7 @@ module.exports.distroySession = function (req, res) {
 			return next(err);
 		}
 	});
+	req.flash("success", "Logged out successfully!");
 	return res.redirect("/");
 };
 
