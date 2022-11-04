@@ -1,11 +1,11 @@
 <% for( let post of locals.posts ) { %>
-<li>
+<li id="post-<%=post.id %>">
 	<!-- All posts 6360a90baa47f7142954b650 -->
 	<p>
 		<% if (locals.user && locals.user.id === post.user.id) { %>
 		<!-- delete post button  -->
 		<small>
-			<a href="/posts/destroy/<%=post.id%>">delete</a>
+			<a class="delete-post-btn" href="/posts/destroy/<%=post.id%>">delete</a>
 		</small>
 		<% } %> <%= post.content %>
 		<br />

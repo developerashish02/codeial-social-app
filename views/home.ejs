@@ -6,7 +6,7 @@
 		<button type="submit"><strong>Post</strong></button>
 	</form>
 
-	<div class="posts">
+	<div id="post-list-container">
 		<ul>
 			<!-- include partials to redable home.ejs  -->
 			<%- include('_post.ejs') %>
@@ -23,3 +23,5 @@
 	</p>
 	<% } %>
 </section>
+
+<script src="/js/home_post.js"></script>
